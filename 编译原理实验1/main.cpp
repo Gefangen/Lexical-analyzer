@@ -4,7 +4,7 @@
 using namespace std;
 char prog[80], token[8];   //toke为存放的单词自身字符值
 char ch;
-int syn, p, m = 0, n, row, sum = 0;    //sy表示单词种类编码，sum为整型常数
+int syn, p, m = 0, n, row, sum = 0;    //syn表示单词种类编码，sum为整型常数
 const char *rwtab[6] = { "begin","if","then","while","do","end" };
 
 void scaner()  //扫描器
