@@ -2,17 +2,15 @@
 #include<string.h>
 #include<iostream>
 using namespace std;
-char prog[80], token[8];
+char prog[80], token[8];   //tokeä¸ºå­˜æ”¾çš„å•è¯è‡ªèº«å­—ç¬¦å€¼
 char ch;
-int syn, p, m = 0, n, row, sum = 0;
+int syn, p, m = 0, n, row, sum = 0;    //syè¡¨ç¤ºå•è¯ç§ç±»ç¼–ç ï¼Œsumä¸ºæ•´å‹å¸¸æ•°
 const char *rwtab[6] = { "begin","if","then","while","do","end" };
 
-void scaner()
+void scaner()  //æ‰«æå™¨
 {
 	/*
-	¹²·ÖÎªÈı´ó¿é£¬·Ö±ğÊÇ±êÊ¾·û¡¢Êı×Ö¡¢·ûºÅ£¬¶ÔÓ¦ÏÂÃæµÄ if   else if  ºÍ else
-
-
+	å…±åˆ†ä¸ºä¸‰å¤§å—ï¼Œåˆ†åˆ«æ˜¯æ ‡ç¤ºç¬¦ã€æ•°å­—ã€ç¬¦å·ï¼Œå¯¹åº”ä¸‹é¢çš„ if   else if  å’Œ else
 	*/
 	for (n = 0; n<8; n++) token[n] = NULL;
 	ch = prog[p++];
@@ -21,7 +19,7 @@ void scaner()
 		ch = prog[p];
 		p++;
 	}
-	if ((ch >= 'a'&&ch <= 'z') || (ch >= 'A'&&ch <= 'Z'))  //¿ÉÄÜÊÇ±êÊ¾·û»òÕß±äÁ¿Ãû 
+	if ((ch >= 'a'&&ch <= 'z') || (ch >= 'A'&&ch <= 'Z'))  //å¯èƒ½æ˜¯æ ‡ç¤ºç¬¦æˆ–è€…å˜é‡å 
 	{
 		m = 0;
 		while ((ch >= '0'&&ch <= '9') || (ch >= 'a'&&ch <= 'z') || (ch >= 'A'&&ch <= 'Z'))
@@ -32,14 +30,14 @@ void scaner()
 		token[m++] = '\0';
 		p--;
 		syn = 10;
-		for (n = 0; n<6; n++)  //½«Ê¶±ğ³öÀ´µÄ×Ö·ûºÍÒÑ¶¨ÒåµÄ±êÊ¾·û×÷±È½Ï£¬ 
+		for (n = 0; n<6; n++)  //å°†è¯†åˆ«å‡ºæ¥çš„å­—ç¬¦å’Œå·²å®šä¹‰çš„æ ‡ç¤ºç¬¦ä½œæ¯”è¾ƒï¼Œ 
 			if (strcmp(token, rwtab[n]) == 0)
 			{
 				syn = n + 1;
 				break;
 			}
 	}
-	else if ((ch >= '0'&&ch <= '9'))  //Êı×Ö 
+	else if ((ch >= '0'&&ch <= '9'))  //æ•°å­— 
 	{
 		{
 			sum = 0;
@@ -54,7 +52,7 @@ void scaner()
 		if (sum>32767)
 			syn = -1;
 	}
-	else switch (ch)   //ÆäËû×Ö·û 
+	else switch (ch)   //å…¶ä»–å­—ç¬¦ 
 	{
 	case'<':m = 0; token[m++] = ch;
 		ch = prog[p++];
@@ -136,4 +134,5 @@ int main()
 		default: cout << "(" << syn << "," << token << ")" << endl; break;
 		}
 	} while (syn != 0);
+	system("pause");
 }
